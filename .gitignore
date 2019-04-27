@@ -1,0 +1,3 @@
+__pycache__/
+testmodel.pkl
+fashion_mnist_data.pkl
