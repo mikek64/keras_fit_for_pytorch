@@ -17,16 +17,17 @@ The code was written with Spyder
 
 ### Usage ### 
 
-(x(data), y(labels) can be all numpy arrays or all torch tensors, or, for x, lists thereof for multiple inputs):
+(x(data), y(labels) can be all numpy arrays or all torch tensors, or, for x, lists thereof for multiple inputs.
+The main class is called CompiledModel to align terminology with Keras though with PyTorch models are not compiled.
 
 	from keraspytorch import CompiledModel
 	compiled_model = CompiledModel(model,      # a PyTorch model
-						  optimizer,  # PyTorch optimizer instance
-						  lossfn,     # PyTorch loss function
-						  metrics,     	# list of metrics. ['accuracy'] is the only metric currently coded 
-										# but will accept a function metric(x,y) where x is the output of the model.
-						  predictfn)   	# optional function applied to model output with predict, default None, 
-										#E.g. nn.Softmax(dim = 1) to get probabilities if Softmax is not in the model
+			optimizer,  # PyTorch optimizer instance
+			lossfn,     # PyTorch loss function
+			metrics,    # list of metrics. ['accuracy'] is the only metric currently coded 
+						# but will accept a function metric(x,y) where x is the output of the model.
+			predictfn)  # optional function applied to model output with predict, default None, 
+						#E.g. nn.Softmax(dim = 1) to get probabilities if Softmax is not in the model
 
 	training_history = compiled_model.fit(x_train, y_train, batch_size = 32, epochs = 10, validation_split = 0.2)
 	test_loss, test_accuracy = compiled_model.evaluate(x_test, y_test, batch_size = 32)
